@@ -9,10 +9,20 @@
     <meta property="og:description" content="Professional development portfolio, technical blog, and creative content platform">
     <meta property="og:image" content="assets/images/og-image.png">
     <meta property="og:url" content="https://www.nitacat.com">
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="assets/js/tailwind.config.js"></script>
+
+    <!-- Customized Style -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Standard Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">    
+    <!-- Android Chrome Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/images/android-chrome-512x512.png">    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="site.webmanifest">
 </head>
 <body class="bg-surface-50 font-body text-surface-900 min-h-screen flex flex-col">
     <!-- Navigation -->
@@ -115,7 +125,9 @@
         </div>
     </footer>
     
-    <!-- 移到 body 結尾，確保 DOM 完全載入後再執行 -->
+    <!-- JS, ensure that the DOM is fully loaded before executing -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind.config.js"></script>
     <script src="assets/js/i18n.js"></script>
     <script src="assets/js/nav.js"></script>
 </body>
