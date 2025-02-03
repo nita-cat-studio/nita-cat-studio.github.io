@@ -1,33 +1,36 @@
 tailwind.config = {
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         brand: {
-          950: '#172554',  // Deep background
-          900: '#1e3a8a',  // Primary headings
-          800: '#1e40af',  // Secondary headings
-          700: '#1d4ed8',  // Logo text
-          600: '#2563eb',  // Primary buttons
-          500: '#3b82f6',  // Secondary buttons
-          400: '#60a5fa',  // Accent text
-          300: '#93c5fd',  // Light elements
-          200: '#bfdbfe',  // Background accents
-          100: '#dbeafe',  // Light background
-          50: '#eff6ff',   // Lightest background
+          50: '#f3f6fc',
+          100: '#e6ecf6',
+          200: '#daebff',
+          300: '#b6d0ff',
+          400: '#80b3ff',
+          500: '#4184e4',
+          600: '#2168d4',
+          700: '#1854b2',
+          800: '#143d7a',
+          900: '#142952',
         },
         surface: {
-          950: '#030712',  // Primary text
-          900: '#111827',  // Secondary text
-          800: '#1f2937',  // Important notes
-          700: '#374151',  // General text
-          600: '#4b5563',  // Supporting text
-          100: '#f3f4f6',  // Divider background
-          50: '#f8fafc',   // Main background
+          50: '#f6f8fa',
+          100: '#eaeef2',
+          200: '#d0d7de',
+          300: '#afb8c1',
+          400: '#8c959f',
+          500: '#6e7781',
+          600: '#57606a',
+          700: '#424a53',
+          800: '#32383f',
+          900: '#24292f',
         }
       },
       fontFamily: {
-        'display': ['Montserrat', 'Noto Sans TC', 'sans-serif'],
-        'body': ['Inter', 'Noto Sans TC', 'sans-serif']
+        'display': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Noto Sans', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji'],
+        'body': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Noto Sans', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji']
       },
       boxShadow: {
         'subtle': '0 2px 8px rgba(0, 0, 0, 0.08)',
