@@ -3,26 +3,26 @@ tailwind.config = {
     extend: {
       colors: {
         brand: {
-          950: '#172554',  // 深色背景
-          900: '#1e3a8a',  // 主要標題
-          800: '#1e40af',  // 次要標題
-          700: '#1d4ed8',  // Logo 文字
-          600: '#2563eb',  // 主要按鈕
-          500: '#3b82f6',  // 次要按鈕
-          400: '#60a5fa',  // 強調文字
-          300: '#93c5fd',  // 輕量元素
-          200: '#bfdbfe',  // 背景點綴
-          100: '#dbeafe',  // 淺色背景
-          50: '#eff6ff',   // 最淺背景
+          950: '#172554',  // Deep background
+          900: '#1e3a8a',  // Primary headings
+          800: '#1e40af',  // Secondary headings
+          700: '#1d4ed8',  // Logo text
+          600: '#2563eb',  // Primary buttons
+          500: '#3b82f6',  // Secondary buttons
+          400: '#60a5fa',  // Accent text
+          300: '#93c5fd',  // Light elements
+          200: '#bfdbfe',  // Background accents
+          100: '#dbeafe',  // Light background
+          50: '#eff6ff',   // Lightest background
         },
         surface: {
-          950: '#030712',  // 主要文字
-          900: '#111827',  // 次要文字
-          800: '#1f2937',  // 重要說明
-          700: '#374151',  // 一般說明
-          600: '#4b5563',  // 輔助文字
-          100: '#f3f4f6',  // 分隔底色
-          50: '#f8fafc',   // 主要底色
+          950: '#030712',  // Primary text
+          900: '#111827',  // Secondary text
+          800: '#1f2937',  // Important notes
+          700: '#374151',  // General text
+          600: '#4b5563',  // Supporting text
+          100: '#f3f4f6',  // Divider background
+          50: '#f8fafc',   // Main background
         }
       },
       fontFamily: {
