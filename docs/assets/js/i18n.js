@@ -49,8 +49,11 @@ const translations = {
 };
 
 // Default language setting and local storage key
-const DEFAULT_LANG = 'en';
-const STORAGE_KEY = 'preferred-language';
+const I18N_CONFIG = {
+    DEFAULT_LANG: 'en',
+    STORAGE_KEY: 'preferred-language',
+    SUPPORTED_LANGS: ['en', 'zh']
+};
 
 /**
  * I18nManager - Handles internationalization of the website
@@ -58,73 +61,54 @@ const STORAGE_KEY = 'preferred-language';
  */
 class I18nManager {
     constructor() {
-        this.currentLang = localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG;
-        this.bindEvents();
+        this.currentLang = this.getInitialLanguage();
+        this.translations = translations; // from existing translations object
+        this.metaTranslations = metaTranslations; // from existing metaTranslations object
     }
 
-    /**
-     * Updates all meta tags with translated content
-     * @param {string} lang - Target language code
-     */
-    updateMetaTags(lang) {
-        const meta = metaTranslations[lang];
-        document.title = meta['page.title'];
-        this.updateMetaContent('description', meta['meta.description']);
-        this.updateMetaContent('og:title', meta['meta.og.title'], 'property');
-        this.updateMetaContent('og:description', meta['meta.og.description'], 'property');
+    getInitialLanguage() {
+        return localStorage.getItem(I18N_CONFIG.STORAGE_KEY) || I18N_CONFIG.DEFAULT_LANG;
     }
 
-    /**
-     * Updates specific meta tag content
-     * @param {string} name - Meta tag name or property
-     * @param {string} content - New content value
-     * @param {string} attr - Attribute type (name or property)
-     */
-    updateMetaContent(name, content, attr = 'name') {
-        document.querySelector(`meta[${attr}="${name}"]`)?.setAttribute('content', content);
+    updateContent() {
+        this.updateMetaTags();
+        this.updatePageContent();
     }
 
-    /**
-     * Updates all translatable page content
-     * @param {string} lang - Target language code
-     */
-    updatePageContent(lang) {
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-            const key = element.getAttribute('data-i18n');
-            if (translations[lang][key]) {
-                element.textContent = translations[lang][key];
-            }
+    updateMetaTags() {
+        const meta = this.metaTranslations[this.currentLang];
+        Object.entries(meta).forEach(([key, value]) => {
+            this.updateMetaTag(key, value);
         });
     }
 
-    /**
-     * Toggles between available languages
-     */
+    updateMetaTag(key, value) {
+        const selector = key.startsWith('og:') ? `meta[property="${key}"]` : `meta[name="${key}"]`;
+        document.querySelector(selector)?.setAttribute('content', value);
+    }
+
+    updatePageContent() {
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const translation = this.translations[this.currentLang][key];
+            if (translation) element.textContent = translation;
+        });
+    }
+
     toggleLanguage() {
         this.currentLang = this.currentLang === 'en' ? 'zh' : 'en';
-        localStorage.setItem(STORAGE_KEY, this.currentLang);
+        localStorage.setItem(I18N_CONFIG.STORAGE_KEY, this.currentLang);
         this.updateContent();
     }
 
-    /**
-     * Updates all content based on current language
-     */
-    updateContent() {
-        this.updateMetaTags(this.currentLang);
-        this.updatePageContent(this.currentLang);
-    }
-
-    /**
-     * Binds event listeners for language switching
-     */
-    bindEvents() {
-        document.addEventListener('DOMContentLoaded', () => {
-            this.updateContent();
-            document.getElementById('langToggle')?.addEventListener('click', 
-                () => this.toggleLanguage());
-        });
+    init() {
+        this.updateContent();
+        document.getElementById('langToggle')?.addEventListener('click', () => this.toggleLanguage());
     }
 }
 
-// Initialize I18n manager instance
-const i18nManager = new I18nManager();
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const i18n = new I18nManager();
+    i18n.init();
+});
